@@ -62,9 +62,9 @@ namespace Commander.Controllers{
             _repository.SaveChanges();
             return NoContent();
         }
-        [HttpPut("{id}")]
+        [HttpPatch("{id}")]
         public ActionResult PartialCommandUpdate(int id,JsonPatchDocument <CommandUpdateDto> patchDoc){
-             var commandModelFromRepo = _repository.GetCommandById(id);
+            var commandModelFromRepo = _repository.GetCommandById(id);
             if(commandModelFromRepo == null){
                 return NotFound();
 
@@ -80,5 +80,16 @@ namespace Commander.Controllers{
             _repository.SaveChanges();
             return NoContent();
         }
+        [HttpDelete("{id}")]
+        public ActionResult DeleteCommand(int id){
+            var commandModelFromRepo = _repository.GetCommandById(id);
+            if(commandModelFromRepo == null){
+                return NotFound();
+        }
+        _repository.DeleteCommand(commandModelFromRepo);
+        _repository.SaveChanges();
+
+        return NoContent();
     }
+}
 }
