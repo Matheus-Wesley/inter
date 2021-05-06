@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Commander.Data;
+using Commander.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,16 +31,7 @@ namespace Commander
         
         public void ConfigureServices(IServiceCollection services)
         {
-            //nssvaitst
-            var server = Configuration["DBServer"] ?? "ms-sql-server";
-            var port = Configuration["DBPort"] ?? "1433";
-            var user = Configuration["DBUser"] ?? "SA";
-            var password = Configuration["DBPassword"] ?? "M@theus123";
-            var database = Configuration["Database"] ?? "Commander";
-             services.AddDbContext<CommanderContext>(opt => 
-                opt.UseSqlServer($"Server={server},{port};Initial Catalog={database};User ID ={user};Password={password}"));
-
-            //^^
+           
             services.AddDbContext<CommanderContext>(opt =>opt.UseSqlServer(
                 Configuration.GetConnectionString("CommanderConnection")));
             services.AddControllers();
@@ -50,19 +42,8 @@ namespace Commander
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ICommanderRepo, SqlCommanderRepo>();
 
-            /*
-            services.AddDbContext<CommanderContext>(opt =>opt.UseSqlServer(
-                Configuration.GetConnectionString("CommanderConnection")));
-            services.AddControllers().AddNewtonsoftJson(s =>{
-                s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            });
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddScoped<ICommanderRepo, SqlCommanderRepo>();
-            services.AddSwaggerGen(c =>{
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Commander API", Version = "v1" });
-            }
-            );
-            */
+            
+          
         }
 
         
@@ -85,6 +66,7 @@ namespace Commander
             {
                 endpoints.MapControllers();
             });
-        }
+
     }
+}
 }

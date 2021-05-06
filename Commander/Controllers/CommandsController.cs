@@ -1,3 +1,5 @@
+using System;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using AutoMapper;
 using Commander.Data;
@@ -13,28 +15,34 @@ namespace Commander.Controllers{
 
     
     public class CommandsController : ControllerBase{
-        public CommandsController(ICommanderRepo repository,IMapper mapper)
+        public CommandsController(ICommanderRepo repository,IMapper mapper,ILogger<CommandsController> logger)
         {
             _repository=repository;
             _mapper=mapper;
+            _logger=logger;
             
+        
         }
-        //prob e. ab e ac 5357
         private readonly ICommanderRepo _repository;
         private readonly IMapper _mapper;
+        private readonly ILogger _logger;
 
         [HttpGet]
         public ActionResult <IEnumerable<Command>> GetAllCommands(){
+            _logger.Log(LogLevel.Information,MyLogEvents.ListItems,"/Commands GET ");
             var commandItems = _repository.GetAppCommands();
             return Ok(_mapper.Map<IEnumerable<CommandReadDto>>(commandItems));
         }
 
         [HttpGet("{id}",Name = "GetCommandById")]
         public ActionResult <CommandReadDto> GetCommandById(int id){
+            _logger.LogInformation(MyLogEvents.GetItem, "Getting user {Id}", id);
             var commandItem = _repository.GetCommandById(id);
             if (commandItem != null){
+                _logger.LogInformation(MyLogEvents.GetItem, "Users getted {Id}", id);
                 return Ok(_mapper.Map<CommandReadDto>(commandItem));
             }
+            _logger.LogWarning(MyLogEvents.GetItemNotFound, "Get({Id}) USER NOT FOUND", id);
             return NotFound();
         }
         
@@ -42,18 +50,20 @@ namespace Commander.Controllers{
         public ActionResult<CommandReadDto> CreateCommands(CommandCreateDto commandCreateDto)
         {
             var commandModel = _mapper.Map<Command>(commandCreateDto);
-            
+             _logger.LogInformation(MyLogEvents.InsertItem, "Inserting user");
+             commandModel.creationDate=DateTime.Now;
             _repository.CreateCommand(commandModel);
             _repository.SaveChanges();
             var commandReadDto = _mapper.Map<CommandReadDto>(commandModel);
             return CreatedAtRoute(nameof(GetCommandById),new{Id= commandReadDto.Id},commandReadDto);
-
+        //pverro
         }
 
         [HttpPut("{id}")]
         public ActionResult UpdateCommand(int id, CommandUpdateDto commandUpdateDto){
             var commandModelFromRepo = _repository.GetCommandById(id);
             if(commandModelFromRepo == null){
+                _logger.LogWarning(MyLogEvents.UpdateItemNotFound, "Put({Id}) USER NOT FOUND", id);
                 return NotFound();
 
             }
@@ -84,9 +94,12 @@ namespace Commander.Controllers{
         public ActionResult DeleteCommand(int id){
             var commandModelFromRepo = _repository.GetCommandById(id);
             if(commandModelFromRepo == null){
+                _logger.LogWarning(MyLogEvents.DeleteItem, "Delete({Id}) USER NOT FOUND", id);
                 return NotFound();
         }
+         
         _repository.DeleteCommand(commandModelFromRepo);
+        _logger.LogInformation(MyLogEvents.DeleteItem, "Deleting user {Id}", id);
         _repository.SaveChanges();
 
         return NoContent();
