@@ -35,7 +35,7 @@ namespace Commander.Data{
         }
 
 
-        public IEnumerable<Command> GetAppCommands()
+        public List<Command> GetAppCommands()
         {
             return _context.Commands.ToList();
         }

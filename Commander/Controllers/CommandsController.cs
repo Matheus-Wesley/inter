@@ -28,10 +28,10 @@ namespace Commander.Controllers{
         private readonly ILogger _logger;
 
         [HttpGet]
-        public ActionResult <IEnumerable<Command>> GetAllCommands(){
+        public ActionResult <List<Command>> GetAllCommands(){
             _logger.Log(LogLevel.Information,MyLogEvents.ListItems,"/Commands GET ");
             var commandItems = _repository.GetAppCommands();
-            return Ok(_mapper.Map<IEnumerable<CommandReadDto>>(commandItems));
+            return Ok(_mapper.Map<List<CommandReadDto>>(commandItems));
         }
 
         [HttpGet("{id}",Name = "GetCommandById")]
