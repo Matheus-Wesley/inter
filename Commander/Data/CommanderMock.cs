@@ -1,4 +1,5 @@
 //mock para testes
+using System;
 using System.Collections.Generic;
 using Commander.Models;
 
@@ -9,12 +10,12 @@ namespace Commander.Data{
         public List<Command> allcomands;
         public CommanderMock(){
             allcomands = new List<Command>{
-                new Command{Id=0,firstName="Cleber",surname="Wesley",age=45},
-                new Command{Id=1,firstName="Pedro",surname="Pereira",age=51},
-                new Command{Id=2,firstName="João",surname="Silva",age=31},
-                new Command{Id=3,firstName="Luciano",surname="Lima",age=29},
-                new Command{Id=4,firstName="Roberto",surname="Carlos",age=80},
-                new Command{Id=5,firstName="Luiza",surname="Santos",age=33}
+                new Command{Id=0,firstName="Teste1",surname="Teste1",age=45,creationDate=DateTime.Now},
+                new Command{Id=1,firstName="Teste2",surname="Teste2",age=51,creationDate=DateTime.Now},
+                new Command{Id=2,firstName="Teste3",surname="Teste3",age=31,creationDate=DateTime.Now},
+                new Command{Id=3,firstName="Teste4",surname="Teste4",age=29,creationDate=DateTime.Now},
+                new Command{Id=4,firstName="Teste5",surname="Teste5",age=80,creationDate=DateTime.Now},
+                new Command{Id=5,firstName="Teste6",surname="Teste6",age=33,creationDate=DateTime.Now}
             };
         }
         public void CreateCommand(Command cmd)
@@ -50,7 +51,17 @@ namespace Commander.Data{
 
         public Command GetCommandById(int id)
         {
-            throw new System.NotImplementedException();
+           Command cmdP = new Command();
+            cmdP.Id = -1;
+            allcomands.ForEach(cmd => {
+                if(cmd.Id == id){
+                    cmdP.Id = cmd.Id;
+                    cmdP.firstName = cmd.firstName;
+                    cmdP.surname = cmd.surname;
+                    cmdP.creationDate = cmd.creationDate;
+                }
+            });
+            return cmdP;
         }
 
         public bool SaveChanges()
@@ -60,7 +71,10 @@ namespace Commander.Data{
 
         public void UpdateCommand(Command cmd)
         {
-            throw new System.NotImplementedException();
+            //proberro--cmd-updatericommanderRepo
+            allcomands.Find(cmd => cmd.Id == cmd.Id).firstName = cmd.firstName;
+            allcomands.Find(cmd => cmd.Id == cmd.Id).surname = cmd.surname;
+            allcomands.Find(user => cmd.Id == cmd.Id).age = cmd.age;
         }
     }
 }
