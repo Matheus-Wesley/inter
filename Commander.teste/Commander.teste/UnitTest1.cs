@@ -99,6 +99,7 @@ namespace Commander.Teste
             teste.control.DeleteCommand(3);
             Assert.Equal(-1,teste.control.GetCommandById(3).Value.Id);
         }
+        
         [Collection("Testes1")]
         public class TesteUpdate{
             UnitTest1 teste;
@@ -108,13 +109,16 @@ namespace Commander.Teste
         [Fact]
         public void Updateteste(){
             Command cmd = new Command();
-            cmd.Id=7;
+            cmd.Id=4;
             cmd.firstName="Matheus";
             cmd.surname="Silva";
             cmd.age=21;
-            //erro-teste.control.UpdateCommand(7,cmd);
-            cmd=teste.repository.GetCommandById(7);
-        }  
+            teste.control.UpdateCommand(4,cmd);
+            cmd=teste.repository.GetCommandById(4);
+            Assert.Equal("Teste5", cmd.firstName);
+            Assert.Equal("Teste5", cmd.surname);
+        }
+        
         }
     }
 }
