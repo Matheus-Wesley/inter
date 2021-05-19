@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lIU2mMHSHjszHW1K+xywgSf9+KCundNI0DjOdAV8YY/FHYM9tHpvcWYBM6rR8Ot018wgUmSJ1iXynoNyczSVkw==",
+  "dgSpecHash": "R8MeRwT9C2XLRkY9HG8hStPQmOJ+5lHrE1h9ZCZRoa5gk9XfgRiKuAPjel4FC0H8MzEiUAXM/VW00nUDzCIwXQ==",
   "success": true,
   "projectFilePath": "D:\\Interl\\Commander\\Commander.csproj",
   "expectedPackageFiles": [
@@ -106,7 +106,8 @@
     "C:\\Users\\mattw\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\mattw\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\mattw\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\mattw\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\mattw\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\mattw\\.nuget\\packages\\xamarin.forms\\5.0.0.2012\\xamarin.forms.5.0.0.2012.nupkg.sha512"
   ],
   "logs": []
 }

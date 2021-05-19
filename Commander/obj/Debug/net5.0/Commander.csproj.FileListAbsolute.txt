@@ -64,3 +64,6 @@ D:\Interl\Commander\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyI
 D:\Interl\Commander\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
 D:\Interl\Commander\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\Interl\Commander\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+D:\Interl\Commander\bin\Debug\net5.0\Xamarin.Forms.Core.dll
+D:\Interl\Commander\bin\Debug\net5.0\Xamarin.Forms.Platform.dll
+D:\Interl\Commander\bin\Debug\net5.0\Xamarin.Forms.Xaml.dll
