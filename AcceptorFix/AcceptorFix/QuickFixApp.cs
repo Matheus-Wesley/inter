@@ -1,14 +1,17 @@
 using System;
-using System.Collections.Generic;
 using QuickFix;
 
 namespace AcceptorFix
 {
 
-    public class QuickFixApp :IApplication
+    public class QuickFixApp : MessageCracker, IApplication
     {
         #region QuickFix.Application Methods
+        int orderID = 0;
+        int execID = 0;
 
+        private string GenOrderID() { return (++orderID).ToString(); }
+        private string GenExecID() { return (++execID).ToString(); }
         public void FromApp(Message message, SessionID sessionID)
         {
             Console.WriteLine("IN:  " + message);
