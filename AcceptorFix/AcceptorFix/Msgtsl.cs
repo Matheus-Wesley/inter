@@ -1,5 +1,7 @@
 ﻿using QuickFix;
 using System.Text.Json;
+
+
 namespace AcceptorFix
 {
     class Msgtsl
@@ -67,6 +69,10 @@ namespace AcceptorFix
                         case
                             "112":
                             msgJ.TestReqID = vd[1];
+                            break;
+                        case
+                            "54":
+                            msgJ.NewOrderSingle = vd[1];
                             break;
                     }
                 }

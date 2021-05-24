@@ -18,5 +18,6 @@ namespace AcceptorFix
         public string EndSeqNo { get; set; }
         public string CheckSum { get; set; }
         public string TestReqID { get; set; }
+        public string NewOrderSingle { get;set; }
     }
 }

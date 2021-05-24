@@ -23,8 +23,9 @@ namespace AcceptorFix
                 acceptor.Start();
                 srv.Start();
                 Console.WriteLine("View Executor status: " + HttpServerPrefix);
-
-                Console.Read();
+                Console.WriteLine("Press enter to stop");
+                Console.ReadLine();
+                srv.Stop();
                 acceptor.Stop();
             }
             catch(Exception e)
